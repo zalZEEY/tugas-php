@@ -1,17 +1,17 @@
 <?php
-function CetakHTML($tag, $text)
-{
-    echo "<$tag>$text</$tag>";
+function formatRupiah($angka) {
+    return 'Rp ' . number_format($angka, 0, ',', '.') . ',00';
 }
-function GetList($nama, $jml, $harga)
-{
-    $total = $jml * $harga;
-    $list="<tr>
-            <td>$nama</td>
-            <td>$jml</td>
-            <td>$harga</td>
-            <td>$total</td>
-          </tr>";
-    return $list;
+
+function hitungSubtotal($jumlah, $harga) {
+    return $jumlah * $harga;
+}
+
+function hitungDiskon($subtotal) {
+    return $subtotal * 0.03;
+}
+
+function hitungTotal($subtotal, $diskon) {
+    return $subtotal - $diskon;
 }
 ?>
