@@ -13,7 +13,7 @@
 
     table {
         border-collapse: collapse;
-        margin-top: 10px;
+        /* margin-top: 10px; */
         border: 1px solid #ddd;
         /* width: 50%;
         margin: 20px; */
@@ -27,6 +27,10 @@
         background-color: #0288D1;
         color: white;
         padding: 10px;
+    }
+
+    .text-left {
+    text-align: left;
     }
 
     td {

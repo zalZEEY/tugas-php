@@ -19,6 +19,7 @@ include "styles.php";
     </thead>
     <tbody>
         <?php
+        // echo '<br><i>Coded by Rizal Bagus Putra Agusta</i>';
         // $no = 1;
         // $totalJumlah = 0;
         // $totalHarga = 0;
@@ -73,7 +74,7 @@ include "styles.php";
 
             echo "<tr>
                 <td>{$no}</td>
-                <td>{$b['nama']}</td>
+                <td class='text-left'>{$b['nama']}</td>
                 <td>{$b['jumlah']}</td>
                 <td>" . rupiah($b['harga']) . "</td>
                 <td>" . rupiah($subtotal) . "</td>
