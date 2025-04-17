@@ -4,7 +4,7 @@ include "library.php";
 include "styles.php";
 ?>
 
-<h2>Latihan Fungsi / Prosedur</h2>
+<h1>Latihan Fungsi / Prosedur</h1>
 <table>
     <thead>
         <tr>
@@ -19,6 +19,37 @@ include "styles.php";
     </thead>
     <tbody>
         <?php
+        // $no = 1;
+        // $totalJumlah = 0;
+        // $totalHarga = 0;
+        // $grandSubTotal = 0;
+        // $grandDiskon = 0;
+        // $grandTotal = 0;
+
+        // foreach ($barang as $item) {
+        //     $jumlah = $item['Jumlah'];
+        //     $harga = $item['Harga'];
+        //     $subTotal = hitungSubTotal($jumlah, $harga);
+        //     $diskon = hitungDiskon($subTotal, $jumlah);
+        //     $total = hitungTotal($subTotal, $diskon);
+
+        //     $totalJumlah += $jumlah;
+        //     $totalHarga += $harga;
+        //     $grandSubTotal += $subTotal;
+        //     $grandDiskon += $diskon;
+        //     $grandTotal += $total;
+
+        //     echo "<tr>
+        //         <td>{$no}</td>
+        //         <td>{$item['Nama']}</td>
+        //         <td>{$jumlah}</td>
+        //         <td>" . Rupiah($harga) . "</td>
+        //         <td>" . Rupiah($subTotal) . "</td>
+        //         <td>" . Rupiah($diskon) . "</td>
+        //         <td>" . Rupiah($total) . "</td>
+        //       </tr>";
+        //     $no++;
+
         $no = 1;
         $total_jumlah = 0;
         $total_harga = 0;
@@ -28,7 +59,10 @@ include "styles.php";
 
         foreach ($barang as $b) {
             $subtotal = hitungSubtotal($b['jumlah'], $b['harga']);
-            $diskon = hitungDiskon($subtotal);
+            $diskon = hitungDiskon($subtotal, $b['jumlah']);
+            // $diskon = hitungDiskon($subtotal);
+            // $diskon = hitungDiskon($subtotal, $b['jumlah']);
+            // $diskon = hitungDiskon($subtotal) $b['jumlah'];
             $total = hitungTotal($subtotal, $diskon);
 
             $total_jumlah += $b['jumlah'];
@@ -52,7 +86,7 @@ include "styles.php";
     </tbody>
     <tfoot>
         <tr class="total-row">
-            <td colspan='2'>T O T A L</td>
+            <td style="text-align: left;" colspan='2'>T O T A L</td>
             <td><?= $total_jumlah ?></td>
             <td><?= rupiah($total_harga) ?></td>
             <td><?= rupiah($total_subtotal) ?></td>

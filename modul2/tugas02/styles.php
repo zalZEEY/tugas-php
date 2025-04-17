@@ -1,17 +1,26 @@
 <style>
     body {
-        font-family: Arial, sans-serif;
+        font-family: Arial;
+        /* width: 100%; */
     }
 
-    h2 {
-        color: #0288D1;
-        text-shadow: 1px 1px #ccc;
+    h1 {
+        color: transparent;
+        -webkit-text-stroke: 2px #0288D1;
+        font-size: 40px;
+        font-family: "Arial Black", sans-serif;
     }
 
     table {
-        width: 100%;
         border-collapse: collapse;
         margin-top: 10px;
+        border: 1px solid #ddd;
+        /* width: 50%;
+        margin: 20px; */
+    }
+
+    table tr:nth-of-type(even) {
+        background-color: #f2f2f2;
     }
 
     th {
@@ -32,6 +41,6 @@
     }
 
     .total-row td {
-        border-top: 2px solid #0288D1;
+        color: orange;
     }
 </style>
