@@ -1,3 +1,4 @@
+<!-- variable.php -->
 <?php
 $user = array(
     array('admin', 'admin123', 'adm'),

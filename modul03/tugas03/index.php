@@ -1,4 +1,5 @@
 <?php
+// index.php
 session_start();
 require_once 'library.php';
 
@@ -24,29 +25,42 @@ if ($logout) {
             margin: 0 auto;
             padding: 20px;
             background-color: #f5f5f5;
+            position: relative;
+        }
+        body:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.5);
+            z-index: -1;
+            border-radius: 15px;
         }
         h1 {
             text-align: center;
             color: #2196F3;
             font-size: 36px;
             margin-bottom: 20px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: bold;
         }
         .panel {
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             margin-bottom: 20px;
             overflow: hidden;
         }
         .panel-header {
             background-color: #2196F3;
             color: white;
-            padding: 12px;
+            padding: 15px;
             text-align: center;
             font-size: 18px;
             font-weight: bold;
-            border-radius: 5px 5px 0 0;
+            border-radius: 20px 20px 0 0;
         }
         .panel-body {
             padding: 20px;
@@ -62,19 +76,20 @@ if ($logout) {
         .add-file-form input[type="text"],
         .add-file-form textarea {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 5px;
             box-sizing: border-box;
         }
         .btn {
-            padding: 8px 20px;
+            padding: 10px 30px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
             text-transform: uppercase;
+            font-size: 14px;
         }
         .btn-login, .btn-add {
             background-color: #4CAF50;
@@ -92,16 +107,16 @@ if ($logout) {
         }
         .file-action {
             display: inline-block;
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             text-align: center;
-            line-height: 18px;
+            line-height: 20px;
             margin-left: 5px;
             color: white;
             text-decoration: none;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 14px;
         }
         .view-file {
             background-color: #2196F3;
@@ -112,7 +127,7 @@ if ($logout) {
         .alert {
             padding: 12px 15px;
             margin-bottom: 15px;
-            border-radius: 4px;
+            border-radius: 8px;
         }
         .alert-danger {
             background-color: #dc3545;
@@ -126,7 +141,7 @@ if ($logout) {
             background-color: #dc3545;
             color: white;
             padding: 8px 12px;
-            border-radius: 4px;
+            border-radius: 6px;
             display: inline-block;
             font-size: 14px;
         }
