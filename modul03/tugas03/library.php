@@ -27,7 +27,6 @@ function Login() {
             if ($unam == $dat1 && $pswd == $dat2) {
                 SetSession('login', $dat1);
                 SetSession('rank', $dat3);
-                // Use JavaScript redirect instead of header()
                 echo '<script>window.location.href = "?";</script>';
                 exit;
             }
@@ -46,7 +45,7 @@ function Login() {
     echo '<label>Password</label>';
     echo '<input type="password" name="pswd" placeholder="Password Anda">';
     
-    echo '<div style="text-align: center; margin-top: 10px;">';
+    echo '<div style="text-align: left; margin-top: 10px;">';
     echo '<button type="submit" class="btn btn-login">Login</button>';
     echo '</div>';
     echo '</form>';
@@ -63,7 +62,6 @@ function AddFile() {
         $file = fopen($folder . '/' . $fnam, 'w');
         fwrite($file, $cntn);
         fclose($file);
-        // Use JavaScript redirect instead of header()
         echo '<script>window.location.href = "?";</script>';
         exit;
     }

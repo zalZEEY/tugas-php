@@ -1,5 +1,4 @@
 <?php
-// index.php
 session_start();
 require_once 'library.php';
 
@@ -9,7 +8,6 @@ $logout = GET('logout', '');
 if ($logout) {
     SetSession('login', '');
     SetSession('rank', '');
-    // Handle logout via JavaScript redirect to avoid header issues
     echo '<script>window.location.href = "?";</script>';
     exit;
 }
@@ -159,7 +157,6 @@ if ($logout) {
         .delete-file {
             background-color: #d9534f;
         }
-        /* New styles to match the screenshot */
         h1 {
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
             color: #39c;
@@ -205,7 +202,6 @@ if ($logout) {
     </div>
     <?php endif; ?>
     
-    <!-- Daftar File Section -->
     <div class="panel">
         <div class="panel-header">Daftar File</div>
         <div class="panel-body">
@@ -214,7 +210,6 @@ if ($logout) {
     </div>
     
     <?php if ($login == ''): ?>
-    <!-- Login Section -->
     <div class="panel">
         <div class="panel-header">Login</div>
         <div class="panel-body">
@@ -222,7 +217,6 @@ if ($logout) {
         </div>
     </div>
     <?php else: ?>
-    <!-- Tambah File Section -->
     <div class="panel">
         <div class="panel-header">Tambah File</div>
         <div class="panel-body">
