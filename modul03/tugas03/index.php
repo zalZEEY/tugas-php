@@ -9,7 +9,8 @@ $logout = GET('logout', '');
 if ($logout) {
     SetSession('login', '');
     SetSession('rank', '');
-    header('Location: ?');
+    // Handle logout via JavaScript redirect to avoid header issues
+    echo '<script>window.location.href = "?";</script>';
     exit;
 }
 ?>
@@ -21,79 +22,114 @@ if ($logout) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 630px;
             margin: 0 auto;
             padding: 20px;
             background-color: #f5f5f5;
-            position: relative;
-        }
-        body:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(255, 255, 255, 0.5);
-            z-index: -1;
-            border-radius: 15px;
         }
         h1 {
             text-align: center;
-            color: #2196F3;
+            color: #39c;
             font-size: 36px;
+            margin-top: 15px;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
         .panel {
-            background-color: white;
-            border-radius: 20px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             margin-bottom: 20px;
-            overflow: hidden;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding-bottom: 20px;
         }
         .panel-header {
-            background-color: #2196F3;
+            background-color: #39c;
             color: white;
-            padding: 15px;
+            padding: 10px;
             text-align: center;
             font-size: 18px;
             font-weight: bold;
-            border-radius: 20px 20px 0 0;
+            border-radius: 50px;
+            margin: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .panel-body {
-            padding: 20px;
+            padding: 0 15px;
         }
-        .login-form label, .add-file-form label {
+        label {
             display: block;
             margin-bottom: 5px;
             color: #FF9800;
-            font-weight: bold;
+            font-weight: normal;
+            font-size: 14px;
         }
-        .login-form input[type="text"], 
-        .login-form input[type="password"],
-        .add-file-form input[type="text"],
-        .add-file-form textarea {
+        input[type="text"], 
+        input[type="password"],
+        textarea {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
             box-sizing: border-box;
         }
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
         .btn {
-            padding: 10px 30px;
+            padding: 6px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 3px;
             cursor: pointer;
             font-weight: bold;
             text-transform: uppercase;
             font-size: 14px;
-        }
-        .btn-login, .btn-add {
-            background-color: #4CAF50;
             color: white;
+        }
+        .btn-login {
+            background-color: #5cb85c;
+        }
+        .btn-add {
+            background-color: #5cb85c;
+        }
+        .empty-data {
+            background-color: #d9534f;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .login-info {
+            margin-bottom: 15px;
+        }
+        .alert {
+            padding: 12px 15px;
+            margin: 0 0 15px 0;
+            border-radius: 4px;
+            color: white;
+        }
+        .alert-danger {
+            background-color: #d9534f;
+        }
+        .alert-success {
+            background-color: #5bc0de;
+        }
+        .login-info a {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 18px;
+            background-color: #d9534f;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 5px;
         }
         .file-list {
             list-style-position: inside;
@@ -112,38 +148,50 @@ if ($logout) {
             border-radius: 50%;
             text-align: center;
             line-height: 20px;
-            margin-left: 5px;
             color: white;
             text-decoration: none;
             font-weight: bold;
-            font-size: 14px;
+            margin-left: 5px;
         }
         .view-file {
-            background-color: #2196F3;
+            background-color: #39c;
         }
         .delete-file {
-            background-color: #F44336;
+            background-color: #d9534f;
         }
-        .alert {
-            padding: 12px 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
+        /* New styles to match the screenshot */
+        h1 {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: #39c;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+            font-size: 42px;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
         }
-        .alert-danger {
-            background-color: #dc3545;
-            color: white;
+        .panel {
+            border-radius: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-        .alert-success {
-            background-color: #5bc0de;
-            color: white;
+        .panel-header {
+            border-radius: 50px;
+            background: linear-gradient(to bottom, #5bc0de, #2980b9);
+            font-size: 20px;
+            padding: 12px;
+            margin: 10px;
         }
         .empty-data {
-            background-color: #dc3545;
+            background-color: #d9534f;
             color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
-            display: inline-block;
-            font-size: 14px;
+            padding: 10px 15px;
+            border-radius: 3px;
+            font-weight: normal;
+        }
+        .btn-login {
+            background: linear-gradient(to bottom, #5cb85c, #449d44);
+            border-radius: 3px;
+            padding: 8px 30px;
+            text-transform: uppercase;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -151,9 +199,10 @@ if ($logout) {
     <h1>Manajemen File</h1>
     
     <?php if ($login != ''): ?>
-    <p>Login sebagai: <strong><?php echo htmlspecialchars($login); ?></strong> 
-        <a href="?logout=1" class="file-action delete-file" title="Logout">×</a>
-    </p>
+    <div class="login-info">
+        Login sebagai: <strong><?php echo htmlspecialchars($login); ?></strong> 
+        <a href="?logout=1" title="Logout">×</a>
+    </div>
     <?php endif; ?>
     
     <!-- Daftar File Section -->

@@ -1,38 +1,4 @@
 <?php
-function Login() {
-    include 'variable.php';
-    
-    $unam = GET('unam', '');
-    $pswd = GET('pswd', '');
-    
-    if ($unam != '' && $pswd != '') {
-        $login_success = false;
-        for ($i = 0; $i < sizeof($user); $i++) {
-            $dat1 = $user[$i][0]; 
-            $dat2 = $user[$i][1]; 
-            $dat3 = $user[$i][2]; 
-            if ($unam == $dat1 && $pswd == $dat2) {
-                SetSession('login', $dat1);
-                SetSession('rank', $dat3);
-                header('Location: ?');
-                exit;
-            }
-        }
-        
-        echo '<div class="alert alert-danger">Login gagal. Periksa kembali Username dan Password anda.</div>';
-    }
-    
-    echo '<form method="post" class="login-form">';
-    echo '<label>Username</label>';
-    echo '<input type="text" name="unam" placeholder="Username Anda">';
-    
-    echo '<label>Password</label>';
-    echo '<input type="password" name="pswd" placeholder="Password Anda">';
-    
-    echo '<button type="submit" class="btn btn-login">Login</button>';
-    echo '</form>';
-}
-
 function GET($key, $value) {
     $res = $value;
     $res = isset($_SESSION[$key]) && $_SESSION[$key] != '' ? $_SESSION[$key] : $res;
@@ -43,6 +9,47 @@ function GET($key, $value) {
 
 function SetSession($key, $value) {
     $_SESSION[$key] = $value;
+}
+
+function Login() {
+    include 'variable.php';
+    
+    $unam = GET('unam', '');
+    $pswd = GET('pswd', '');
+    $login_message = '';
+    
+    if ($unam != '' && $pswd != '') {
+        $login_success = false;
+        for ($i = 0; $i < sizeof($user); $i++) {
+            $dat1 = $user[$i][0]; 
+            $dat2 = $user[$i][1]; 
+            $dat3 = $user[$i][2]; 
+            if ($unam == $dat1 && $pswd == $dat2) {
+                SetSession('login', $dat1);
+                SetSession('rank', $dat3);
+                // Use JavaScript redirect instead of header()
+                echo '<script>window.location.href = "?";</script>';
+                exit;
+            }
+        }
+        
+        $login_message = '<div class="alert alert-danger">Login gagal. Periksa kembali <a href="#" style="color:white;text-decoration:underline;">Username</a> dan <a href="#" style="color:white;text-decoration:underline;">Password</a> anda.</div>';
+    }
+    if (!empty($login_message)) {
+        echo $login_message;
+    }
+    
+    echo '<form method="post" class="login-form">';
+    echo '<label>Username</label>';
+    echo '<input type="text" name="unam" placeholder="Username Anda">';
+    
+    echo '<label>Password</label>';
+    echo '<input type="password" name="pswd" placeholder="Password Anda">';
+    
+    echo '<div style="text-align: center; margin-top: 10px;">';
+    echo '<button type="submit" class="btn btn-login">Login</button>';
+    echo '</div>';
+    echo '</form>';
 }
 
 function AddFile() {
@@ -56,7 +63,8 @@ function AddFile() {
         $file = fopen($folder . '/' . $fnam, 'w');
         fwrite($file, $cntn);
         fclose($file);
-        header('Location: ?');
+        // Use JavaScript redirect instead of header()
+        echo '<script>window.location.href = "?";</script>';
         exit;
     }
     
@@ -106,3 +114,4 @@ function FileList() {
         echo '</ol>';
     }
 }
+?>
