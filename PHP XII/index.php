@@ -3,53 +3,71 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Tugas Coding - TKJ Senja</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title><?php echo basename(__DIR__); ?> - Pemrograman PHP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
       margin: 0;
-      padding: 0;
     }
 
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: #ecf0f1;
-      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 40px 20px;
+      align-items: flex-start;
     }
 
     .container {
-      background: #1e272e;
       width: 100%;
       max-width: 960px;
+      margin: 40px auto;
+      background: #1e272e;
       padding: 30px;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      animation: fadeIn 1s ease;
+      animation: fadeIn 0.8s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-bottom: 25px;
+      padding: 10px 16px;
+      background-color: #34495e;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #2c3e50;
     }
 
     h1 {
       text-align: center;
-      font-size: 2.5rem;
+      font-size: 2rem;
       color: #f1c40f;
       margin-bottom: 10px;
     }
 
-    .path {
+    .directory-info {
       text-align: center;
-      font-size: 0.9rem;
       color: #95a5a6;
+      font-size: 0.9rem;
       margin-bottom: 25px;
       word-wrap: break-word;
     }
@@ -60,11 +78,11 @@
 
     table {
       width: 100%;
+      min-width: 600px;
       border-collapse: collapse;
       background: #2f3640;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
-      min-width: 600px;
     }
 
     thead {
@@ -72,7 +90,7 @@
     }
 
     th, td {
-      padding: 16px;
+      padding: 15px;
       text-align: left;
       white-space: nowrap;
     }
@@ -87,8 +105,7 @@
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 8px;
-      transition: color 0.3s;
+      gap: 10px;
     }
 
     td a:hover {
@@ -100,11 +117,11 @@
     }
 
     tr:hover {
-      background: #3c4451;
+      background: #3d566e;
     }
 
     .icon {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     .footer {
@@ -114,49 +131,58 @@
       font-size: 0.85rem;
     }
 
-    .portfolio-link {
-      margin-top: 10px;
-      display: block;
-      text-align: center;
-    }
-
-    .portfolio-link a {
-      color: #00cec9;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .portfolio-link a:hover {
-      color: #81ecec;
-      text-decoration: underline;
-    }
-
+    /* Responsiveness */
     @media (max-width: 768px) {
       h1 {
-        font-size: 2rem;
+        font-size: 1.6rem;
       }
+
       th, td {
         padding: 12px;
         font-size: 0.95rem;
+      }
+
+      .back-button {
+        font-size: 0.9rem;
+        padding: 8px 14px;
       }
     }
 
     @media (max-width: 480px) {
       h1 {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
       }
+
+      .directory-info {
+        font-size: 0.8rem;
+      }
+
+      .back-button {
+        font-size: 0.85rem;
+      }
+
       th, td {
+        font-size: 0.85rem;
         padding: 10px;
-        font-size: 0.9rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>&#128193; Tugas Coding</h1>
-    <div class="path">Direktori: <code><?php echo $_SERVER['REQUEST_URI']; ?></code></div>
+    <a href="../" class="back-button">&#11013; Kembali ke Direktori Utama</a>
+
+    <h1>
+      <?php 
+        $folderName = basename(__DIR__);
+        $formattedName = ucfirst(str_replace(['modul', '_'], ['Modul ', ' '], $folderName));
+        echo $formattedName . " - Pemrograman PHP"; 
+      ?>
+    </h1>
+
+    <div class="directory-info">
+      Direktori: <code><?php echo $_SERVER['REQUEST_URI']; ?></code>
+    </div>
 
     <div class="table-wrapper">
       <table>
@@ -169,15 +195,13 @@
         </thead>
         <tbody>
           <?php
-          $hidden_files = ['.bash_logout', '.bashrc', '.htaccess', '.profile', 'index.php', 'ROOT_32_RIZAL_BAGUS_PUTRA_AGUSTA'];
+          $exclude = ['.', '..', 'index.php', '.htaccess'];
           $files = scandir('.');
           foreach ($files as $file) {
-            if ($file != "." && $file != ".." && !in_array($file, $hidden_files)) {
-              $isDir = is_dir($file);
-              $icon = $isDir ? "&#128193;" : "&#128196;";
-              $lastModified = date("Y-m-d", filemtime($file));
-              $size = $isDir ? "-" : formatSize(filesize($file));
-
+            if (!in_array($file, $exclude)) {
+              $icon = is_dir($file) ? "&#128193;" : "&#128196;";
+              $lastModified = date("Y-m-d H:i", filemtime($file));
+              $size = is_dir($file) ? '-' : formatSize(filesize($file));
               echo "<tr>
                 <td><a href='$file'><span class='icon'>$icon</span>$file</a></td>
                 <td>$lastModified</td>
@@ -197,11 +221,7 @@
     </div>
 
     <div class="footer">
-      Server: Apache | &copy; 2025 TKJ Senja
-      <div class="portfolio-link">
-        &#127760; Portofolio saya:
-        <a href="https://www.kagimen.my.id/" target="_blank">www.kagimen.my.id</a>
-      </div>
+      &copy; 2025 TKJ Senja | Server Apache
     </div>
   </div>
 </body>

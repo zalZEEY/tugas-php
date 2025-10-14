@@ -1,5 +1,5 @@
 <?php
-$nama=array("Steven","Faurel","Rizky","Sigit","Fardan");
+$nama=array("Bunda Rahma","Nisan","Kakangku","Apundi","Haikal");
 $nilai=array(
 	array(60,80,78),
 	array(89,74,72),
