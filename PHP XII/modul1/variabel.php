@@ -12,4 +12,5 @@ echo "<br>";
 echo $angka.' - '.$huruf.' - '.$desimal;
 echo "<br>";
 echo $angka*$desimal;
+echo '<br><br><i>Coded by Rizal Bagus Putra Agusta</i>';
 ?>

@@ -21,4 +21,5 @@ for($i=0;$i<sizeof($nilai);$i++)
         echo $nilai[$i].'<br>';
     }
 }
+echo '<br><br><i>Coded by Rizal Bagus Putra Agusta</i>';
 ?>

@@ -7,4 +7,5 @@ echo 'Nama | '.$mapel[0].' | '.$mapel[1].'<br>';
 echo '-----------------------<br>';
 echo $nama[0].' | '.$nilai[0][0].' | '.$nilai[0][1].'<br>';
 echo $nama[1].' | '.$nilai[1][0].' | '.$nilai[1][1].'<br>';
+echo '<br><br><i>Coded by Rizal Bagus Putra Agusta</i>';
 ?>
