@@ -197,7 +197,7 @@
     </div>
 
     <div class="footer">
-      Server: Apache | &copy; 2025 TKJ Senja
+      Server: Apache | &copy; 2025 TKJ Senja <br> <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@kagi.men/video/7560642123071016204" data-video-id="7560642123071016204" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@kagi.men" href="https://www.tiktok.com/@kagi.men?refer=embed">@kagi.men</a> agit era😟 <a title="agit" target="_blank" href="https://www.tiktok.com/tag/agit?refer=embed">#agit</a> <a title="snbp" target="_blank" href="https://www.tiktok.com/tag/snbp?refer=embed">#snbp</a> <a title="snbt" target="_blank" href="https://www.tiktok.com/tag/snbt?refer=embed">#snbt</a> <a title="kerja" target="_blank" href="https://www.tiktok.com/tag/kerja?refer=embed">#kerja</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a target="_blank" title="♬ suara asli  - zal." href="https://www.tiktok.com/music/suara-asli-zal-7560642129437969164?refer=embed">♬ suara asli  - zal.</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
       <div class="portfolio-link">
         &#127760; Portofolio saya:
         <a href="https://www.kagimen.my.id/" target="_blank">www.kagimen.my.id</a>
